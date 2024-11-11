@@ -1,0 +1,3 @@
+node_modules
+cypress/test-result
+cypress/downloads

@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "strict": true,
+        "target": "ESNext",
+        "verbatimModuleSyntax": true,
+        "lib":["es5","dom"],
+        "types": [
+            "cypress-plugin-api",
+            "cypress-plugin-steps",
+            "cypress",
+            "node"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@pages/*":["./cypress/support/POM/*"],
+            "@helper/*":["./cypress/support/helper/*"],
+            "@date/*":["./cypress/fixtures/data/*"]
+        }
+    },
+    "include": ["cypress.config.ts","**/*.ts"],
+    "exclude": ["./node_modules","**/*.js"]
+}

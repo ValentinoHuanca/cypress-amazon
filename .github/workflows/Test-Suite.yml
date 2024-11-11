@@ -1,0 +1,57 @@
+name: Cypress Testing
+run-name: ${{github.actor}} run TestSuite in ${{github.ref_name}}
+on: [workflow_dispatch]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy: 
+          fail-fast: false
+          matrix:
+            browser: ['chrome','firefox','edge'] #correra en tres navegadores
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            
+            - name: set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: 20.12.2
+            
+            - name: Bun Setup
+              uses: oven-sh/setup-bun@v1
+
+
+            - name: Installing Dependencias
+              run:  |
+                bun install
+
+
+            - name: cypress Run test coverage in ${{ matrix.browser }}
+              uses: cypress-io/github-action@v4
+              with:
+                  browser: ${{ matrix.browser }}
+                  command:
+                    bun run test:e2e:${{ matrix.browser }} **/*/<nameTest>
+
+            - name: Generate Junit/Mocha report for ${{ matrix.browser }}
+              if: always()
+              run: |
+                bun run ${{ matrix.browser }}:report 
+
+
+
+            - name: artefact mochawesome HTML ${{matrix.browser}}
+              if: always()
+              uses: actions/upload-artifact@v3
+              with:
+                    name: report-Mochawesome_${{github.ref_name}}_${{matrix.browser}}
+                    path: cypress/test-result/mocha/${{matrix.browser}}_mocha_report
+                      
+            
+            - name: artefact Junit XML report ${{matrix.browser}}
+              if: always()
+              uses: actions/upload-artifact@v3
+              with:
+                    name: report-Junit_${{github.ref_name}}_${{matrix.browser}}
+                    path: cypress/test-result/junit-report/${{matrix.browser}}_regression_report.xml

@@ -1,0 +1,51 @@
+name: Pipeline Regression in QA
+run-name: ${{github.actor}} triggered Regression in ${{github.ref_name}}
+on: 
+  push:  
+    branches:
+    - QA
+        
+jobs:
+    RegressionTesting:
+      name: regression 
+      runs-on: ubuntu-latest
+      strategy: 
+        fail-fast: false
+        matrix:
+          browser: ['chrome','firefox','edge'] #correra en tres navegadores
+
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+            node-version: 20.12.2
+
+      - name: Inatall bun Setup
+        uses: oven-sh/setup-bun@v1
+        
+      - name: Install all Dependencies
+        run: |
+          bun install    
+
+      - name: cypress E2E regression test on ${{ matrix.browser }}
+        uses: cypress-io/github-action@v4
+        with:
+          browser: ${{ matrix.browser }}
+          command: |
+            bun run ${{ matrix.browser }}:regression
+
+      - name: Generate Junit/Mocha report for ${{ matrix.browser }}
+        if: always()
+        run: |
+          bun run ${{ matrix.browser }}:report
+
+      - name: Upload Artifact ${{ matrix.browser }} Mochawesome report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: regression-${{ matrix.browser }}-mocha-report
+          path: cypress/test-result/mocha/${{ matrix.browser }}_mocha_report
+          retention-days: 15    

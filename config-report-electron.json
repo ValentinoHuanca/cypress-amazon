@@ -1,0 +1,15 @@
+{
+    "reporterEnabled":"spec,mocha-junit-reporter,mochawesome",
+    "mochaJunitReporterReporterOptions":{
+        "mochaFile":"cypress/test-result/junit-report/electron/result-[hash].xml",
+        "toConsole":false,
+        "outputs":false,
+        "testCaseSwitchClassnameAndName":true
+    },
+    "reporterOptions":{
+        "reportDir":"cypress/test-result/mocha/electron",
+        "overwrite":false,
+        "html":false,
+        "json":false
+    }
+}
