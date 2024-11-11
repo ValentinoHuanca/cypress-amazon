@@ -1,4 +1,4 @@
-# ✅OrangeHRM | PIM | Agregar un nuevo empleado con usuario
+# OrangeHRM | PIM | Agregar un nuevo empleado con usuario
 
 **COMO** administrador en OrangeHRM
 
