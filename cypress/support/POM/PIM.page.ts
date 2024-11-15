@@ -38,7 +38,7 @@ class PimAddEmployee {
         const lastNameT:string=faker.person.lastName()
         const iDT:number=faker.number.int({min: 1000, max: 9999})
         const statusForNum:number=randomNumInt(0,1)
-        const passwordType:string=faker.internet.password({length:15})
+        const passwordType:string="3"+faker.internet.password({length:15})
         const usernameT:string=faker.internet.username({firstName:nameType})
         cy.wrap([nameType,lastNameT,nameComplete,iDT,usernameT]).as('nameComAndId')
         this.firstName().type(nameType)
@@ -53,6 +53,20 @@ class PimAddEmployee {
         this.conPassword().type(passwordType)
         this.saveBtn().click({force:true})
 
+    }
+
+    addEmployeeDate(nameD:string,middleNameD:string,lastNameD:string,idD:string,usernameD:string,passwordD:string,passwordFalse:string){
+        this.firstName().type(nameD)
+        this.middleName().type(middleNameD)
+        this.lastName().type(lastNameD)
+        //this.employeeId().type('')
+        this.employeeId().type(`{selectAll}{del}${idD}`)
+        this.createLoginDetailsBtn().click()
+        this.username().type(usernameD)
+        this.statusEmployeeEnaDis(0).click()
+        this.password().type(passwordD)
+        this.conPassword().type(passwordFalse)
+        this.saveBtn().click({force:true})
     }
 }
 

@@ -6,6 +6,7 @@
 
 **PARA** gestionar su perfil en el sistema de la empresa
 
+## Acceptance criteria
 
 Background:
 
@@ -32,3 +33,55 @@ Scenario 01: administrador incorpora un nuevo empleado con usuario al sistema de
   Then: deberían aparecer Log Messages indicando las reglas de negocios establecidas
   And: permanece en la misma página de "Add Employee"
   And: no se direcciona a la página con los detalles personales del perfil de un nuevo usuario/empleado creado
+
+
+
+## Business rules
+
+input firstName:
+
+* Should not exceed 30 characters X
+
+* Required X
+
+input middleName:
+
+* Should not exceed 30 characters X
+
+input lastName:
+
+* Should not exceed 30 characters X
+
+* Required X
+
+input employeeId:
+
+* Should not exceed 10 characters X
+
+* Employee Id already exists X
+
+input username:
+
+* Should not exceed 40 characters X
+
+* Should be at least 5 characters X
+
+* Username already exists X
+
+* Required X
+
+input password:
+
+* Should not exceed 64 characters X
+
+* Should have at least 7 characters X
+
+* Required X
+
+* Your password must contain minimum 1 number X
+
+* Your password must contain minimum 1 lower-case letter X
+
+input verificacionPassword:
+
+* Passwords do not match X
