@@ -1,0 +1,17 @@
+{
+    "url":"https://opensource-demo.orangehrmlive.com/web/index.php/",
+    "endpoints":{
+        "dashboard":"dashboard/index",
+        "PIM":{
+            "EmployeeList":"pim/viewEmployeeList",
+            "AddEmployee":"pim/addEmployee",
+            "Reports":"pim/viewDefinedPredefinedReports"
+        },
+        "buzz":"buzz/viewBuzz",
+        "admin":{
+            "UserManagement":{
+                "user":"admin/viewSystemUsers"
+            }
+        }
+    }
+}
