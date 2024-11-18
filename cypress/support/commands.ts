@@ -28,12 +28,21 @@ declare namespace Cypress {
     interface Chainable<Subject = any> {
 		//si se quiere agregar un parametro, se debe primero agregar aca luego en el Cypress.Commands
         myCommand(param:string): Chainable<any>;
+		login(): Chainable<any>
 
     }
 }
 
-beforeEach(() => {
-	Cypress.on('uncaught:exception', () => false); // returning false here prevents Cypress from failing the test
-	cy.intercept({ resourceType: /^(xhr|fetch)$/ }, { statusCode: 200, body: { data: 'fake data' } });
-	cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
-});
+//beforeEach(() => {
+	//Cypress.on('uncaught:exception', () => false); // returning false here prevents Cypress from failing the test
+	//cy.intercept({ resourceType: /^(xhr|fetch)$/ }, { statusCode: 200, body: { data: 'fake data' } });
+	//cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
+//});
+
+
+Cypress.Commands.add('login',()=>{
+	cy.get('[data-v-1f99f73c=""]').eq(0).type('Admin')
+	cy.get('[data-v-1f99f73c=""]').eq(1).type('admin123')
+	cy.get('[type="submit"]').click()
+})
+
