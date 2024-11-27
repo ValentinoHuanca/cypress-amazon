@@ -1,4 +1,4 @@
-# CypressTS-Amazon
+# CypressTS-OrangeHRM
 Bienvenido a mi muestra de conocimientos en cypress, aplicando mis conocimientos en constante crecimiento.
 A continuacion se explicara como ejecutar los diferentes casos de prueba en el ambito del testing de E2E
 ## Branch
